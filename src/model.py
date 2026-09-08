@@ -1,8 +1,5 @@
 import torch
 from torch import nn
-import pandas as pd
-import numpy as np
-import dataset
 
 class IntrusionModel(nn.Module):
     def __init__(self,input_dim: int):
