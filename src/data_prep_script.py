@@ -26,7 +26,7 @@ def clean_data(input_path , output_path):
     df = df.drop(columns=[col for col in columns_to_drop if col in df.columns], errors='ignore')
     print(f"\n Dropped specified columns-> New shape: {df.shape}")
     
-    print("-" * 80)
+    print("-" * 40)
 
     print(f"\n Fixing Infinity and NaN values...")
     
@@ -35,13 +35,14 @@ def clean_data(input_path , output_path):
     df = df.dropna() # drop all the NaN values
     print(f"\n Dropped {initial_shape[0] - len(df)} corrupted rows")
     
-    print("-" * 80)
+    print("-" * 40)
     
     
     print(f"\n Encoding Categorical columns...")
     TARGET_COL = "Label"
-    if TARGET_COL in df.columns and df[TARGET_COL].dtype == 'object':
+    if TARGET_COL in df.columns:
         print(f"\n Encoding target variable: {TARGET_COL}")
+        df[TARGET_COL] = df[TARGET_COL].astype(str)
         le = LabelEncoder()
         df[TARGET_COL] = le.fit_transform(df[TARGET_COL])
         
@@ -49,7 +50,7 @@ def clean_data(input_path , output_path):
         mapping = dict(zip(le.classes_, le.transform(le.classes_)))
         print(f"\n Label Mapping: {mapping}")
     
-    print("-" * 80)
+    print("-" * 40)
     
     print(f"\n Saving clean dataset to {output_path}...")
     # output folder existed or not
