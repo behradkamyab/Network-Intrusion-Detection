@@ -8,13 +8,13 @@ class IntrusionModel(nn.Module):
         
         self.network = nn.Sequential(
             # layer 1 (input)
-            nn.Linear(input_dim,128),
+            nn.Linear(input_dim,128 , bias=False),
             nn.BatchNorm1d(128),
             nn.ReLU(),
             # we can later add dropout or L2 regularization if we see overfitting
             
             # layer 2
-            nn.Linear(128,64),
+            nn.Linear(128,64 , bias=False),
             nn.BatchNorm1d(64),
             nn.ReLU(),
             
