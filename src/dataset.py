@@ -5,6 +5,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 class NetworkDataset(Dataset):
+    """
+    A custom PyTorch Dataset class for network intrusion detection.
+    
+    """
     def __init__(self, features , labels):
         # features and labels are numpy arrays for now
         self.features = features
@@ -27,6 +31,14 @@ class NetworkDataset(Dataset):
     
     
 def get_dataloaders(data_path: str , batch_size : int = 256 , test_size: float = 0.2):
+    """
+    Function to create PyTorch DataLoaders for training and testing datasets.
+    
+    args:
+        data_path (str): Path to the cleaned CSV dataset.
+        batch_size (int): Number of samples per batch.
+        test_size (float): Proportion of the dataset to include in the test split.
+    """
     df = pd.read_csv(data_path)
     X = df.iloc[:, :-1].values
     y = df.iloc[:, -1].values
@@ -48,7 +60,6 @@ def get_dataloaders(data_path: str , batch_size : int = 256 , test_size: float =
 if __name__ == "__main__":
     train_dl, test_dl, dim = get_dataloaders("../data/processed/clean_ddos_traffic.csv")
     
-    # Fetch exactly one batch to prove it works
     X_batch, y_batch = next(iter(train_dl))
     print(f"\nBatch X shape: {X_batch.shape} (Batch Size x Features)")
     print(f"Batch y shape: {y_batch.shape} (Batch Size,)")

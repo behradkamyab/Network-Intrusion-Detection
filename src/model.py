@@ -2,6 +2,10 @@ import torch
 from torch import nn
 
 class IntrusionModel(nn.Module):
+    """
+    A simple feedforward neural network for intrusion detection.
+    The network consists of two hidden layers with ReLU activation and batch normalization. 
+    """
     def __init__(self,input_dim: int):
         super().__init__()
         

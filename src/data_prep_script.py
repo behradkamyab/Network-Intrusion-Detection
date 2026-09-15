@@ -71,7 +71,7 @@ def clean_data(input_path , output_path):
 
 
 if __name__ == "__main__":
-    # Setup argparse so the script can be run flexibly from the terminal
+    # setup argparse for running the script from command line
     parser = argparse.ArgumentParser(description="Clean raw network dataset for deep learning modeling.")
     parser.add_argument('--input', type=str, default='data/raw/dataset.csv', help='Path to raw CSV')
     parser.add_argument('--output', type=str, default='data/processed/clean_data.csv', help='Path to save clean CSV')
